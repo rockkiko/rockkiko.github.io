@@ -36,6 +36,12 @@
 			font-weight: bold;
 			cursor: pointer;
 			}
+	        .special-link {
+		        color: #4a90e2 !important; /* Example: a shade of blue */
+		    	}
+		    .special-link:hover {
+		        color: #357ABD !important; /* Darker shade of blue on hover */
+		    	}
     </style>
 </head>
 <body>
@@ -43,7 +49,7 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
         <a class="navbar-brand" href="#">kiko</a>
-		<img src="logo.jpg" alt="Logo" width="30" height="30" class="d-inline-block align-text-top">
+        <img src="logo.jpg" alt="Logo" width="30" height="30" class="d-inline-block align-text-top">
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -53,11 +59,13 @@
                 <li class="nav-item"><a class="nav-link" href="#What-I-do">What I do</a></li>
                 <li class="nav-item"><a class="nav-link" href="#likes">Likes</a></li>
                 <li class="nav-item"><a class="nav-link" href="#dislikes">Dislikes</a></li>
-
+                <!-- -------- -->
+                <li class="nav-item ms-lg-3"><a class="nav-link special-link" href="https://kiko.lol/information">Information</a></li>
             </ul>
         </div>
     </div>
 </nav>
+
 
 <section id="about" class="py-5 fw-bold">
     <div class="container">
