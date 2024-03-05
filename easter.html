@@ -3,30 +3,117 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Drawing</title>
+    <title>Canvas Drawing</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.1.0/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        canvas {
-            border: 1px solid #000;
-            background-color: #000;
+        body {
+			background-image: url('background.png');
+			background-repeat: repeat;
+			background-size: auto;
+			background-attachment: fixed; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
         }
+        #canvasContainer {
+            position: relative;
+        }
+        canvas {
+            border: 1px solid #ddd;
+            background-color: #fff;
+        }
+        .btn-custom {
+            background-color: green;
+            border-radius: 20px;
+            color: white;
+            padding: 10px 24px;
+            font-size: 16px;
+			justify-content: center; /* Add this line */
+			display: flex; /* Ensure this is set */
+			width: 100%; /* Make the button group full width of its parent */
+        }
+        .btn-custom:hover {
+            background-color: orange;
+            color: white;
+        }
+        .btn-custom:active {
+            background-color: red;
+            color: white;
+        }
+        .color-button {
+            height: 30px;
+            width: 30px;
+            border-radius: 50%;
+            margin: 2px;
+            border: none;
+            cursor: pointer;
+        }
+		#canvasContainer {
+			display: flex; /* Add this line */
+			justify-content: center; /* Center horizontally */
+			align-items: start; /* Align items at the start vertically */
+		}
+
+		.color-picker {
+			margin-right: 10px; // Adjust spacing for smaller screens
+			margin-bottom: 10px; // Stack vertically or adjust layout
+		}
+		.btn-group {
+			flex-direction: column; // Stack buttons vertically on smaller screens
+			align-items: center; // Ensure alignment is centered
+		}
+
     </style>
 </head>
 <body>
-<div class="container mt-5">
-    <canvas id="drawingCanvas" width="400" height="400"></canvas>
+<div id="canvasContainer" class="text-center">
+    <div class="color-picker">
+        <button class="color-button" style="background-color: black;" onclick="changeColor('black')"></button>
+        <button class="color-button" style="background-color: gray;" onclick="changeColor('gray')"></button>
+        <button class="color-button" style="background-color: white;" onclick="changeColor('white')"></button>
+        <button class="color-button" style="background-color: red;" onclick="changeColor('red')"></button>
+        <button class="color-button" style="background-color: green;" onclick="changeColor('green')"></button>
+        <button class="color-button" style="background-color: blue;" onclick="changeColor('blue')"></button>
+        <button class="color-button" style="background-color: yellow;" onclick="changeColor('yellow')"></button>
+        <button class="color-button" style="background-color: brown;" onclick="changeColor('brown')"></button>
+        <button class="color-button" style="background-color: purple;" onclick="changeColor('purple')"></button>
+        <button class="color-button" style="background-color: orange;" onclick="changeColor('orange')"></button>
+        <button class="color-button" style="background-color: cyan;" onclick="changeColor('cyan')"></button>
+        <button class="color-button" style="background-color: pink;" onclick="changeColor('pink')"></button>
+        <button class="btn btn-custom mt-2" id="fillButton">Fill</button>
+    </div>
+    <canvas id="drawingCanvas"></canvas>
     <div class="btn-group mt-3">
-        <button class="btn btn-secondary" id="eraserButton">Eraser</button>
-        <button class="btn btn-danger" id="clearButton">Clear Drawing</button>
-        <button class="btn btn-success" id="submitButton">Submit</button>
+        <button class="btn btn-custom" id="eraserButton">Eraser</button>
+        <button class="btn btn-custom" id="clearButton">Clear Drawing</button>
+        <button class="btn btn-custom" id="submitButton">Submit</button>
     </div>
 </div>
 
 <script>
+	function resizeCanvas() {
+		const maxWidth = 800; // Max canvas width
+		const maxHeight = 600; // Max canvas height
+		const canvasContainer = document.getElementById('canvasContainer');
+		const canvas = document.getElementById('drawingCanvas');
+		canvas.width = Math.min(canvasContainer.offsetWidth - 60, maxWidth); // Adjust -60 for padding/margins
+		canvas.height = Math.min(window.innerHeight * 0.7, maxHeight); // Use 70% of viewport height or max height
+	}
+
+	// Call resizeCanvas on load and on window resize
+	window.addEventListener('load', resizeCanvas);
+	window.addEventListener('resize', resizeCanvas);
+
     const canvas = document.getElementById('drawingCanvas');
     const ctx = canvas.getContext('2d');
     let painting = false;
     let erasing = false;
+    let currentColor = 'black';
+
+    ctx.fillStyle = "white";
+    ctx.fillRect(0, 0, canvas.width, canvas.height); // Initialize canvas background to white
 
     function startPosition(e) {
         painting = true;
@@ -42,12 +129,18 @@
         if (!painting) return;
         ctx.lineWidth = erasing ? 10 : 5;
         ctx.lineCap = 'round';
-        ctx.strokeStyle = erasing ? 'black' : 'white';
-
-        ctx.lineTo(e.clientX - canvas.offsetLeft, e.clientY - canvas.offsetTop);
+        ctx.strokeStyle = erasing ? 'white' : currentColor;
+		
+		const rect = canvas.getBoundingClientRect();
+        ctx.lineTo(e.clientX - rect.left, e.clientY - rect.top);
         ctx.stroke();
         ctx.beginPath();
-        ctx.moveTo(e.clientX - canvas.offsetLeft, e.clientY - canvas.offsetTop);
+        ctx.moveTo(e.clientX - rect.left, e.clientY - rect.top);
+    }
+
+    function changeColor(color) {
+        currentColor = color;
+        erasing = false; // Disable eraser when a color is selected
     }
 
     canvas.addEventListener('mousedown', startPosition);
@@ -55,7 +148,10 @@
     canvas.addEventListener('mousemove', draw);
 
     document.getElementById('eraserButton').addEventListener('click', () => erasing = !erasing);
-    document.getElementById('clearButton').addEventListener('click', () => ctx.clearRect(0, 0, canvas.width, canvas.height));
+    document.getElementById('clearButton').addEventListener('click', () => {
+        ctx.fillStyle = "white";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+    });
     document.getElementById('submitButton').addEventListener('click', () => {
         const dataURL = canvas.toDataURL('image/png');
         const link = document.createElement('a');
@@ -63,7 +159,11 @@
         link.href = dataURL;
         link.click();
     });
+    document.getElementById('fillButton').addEventListener('click', () => {
+        ctx.fillStyle = currentColor;
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+    });
+	
 </script>
 </body>
 </html>
-
