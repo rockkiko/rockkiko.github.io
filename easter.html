@@ -1,1 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drawing</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.1.0/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        canvas {
+            border: 1px solid #000;
+            background-color: #000;
+        }
+    </style>
+</head>
+<body>
+<div class="container mt-5">
+    <canvas id="drawingCanvas" width="400" height="400"></canvas>
+    <div class="btn-group mt-3">
+        <button class="btn btn-secondary" id="eraserButton">Eraser</button>
+        <button class="btn btn-danger" id="clearButton">Clear Drawing</button>
+        <button class="btn btn-success" id="submitButton">Submit</button>
+    </div>
+</div>
+
+<script>
+    const canvas = document.getElementById('drawingCanvas');
+    const ctx = canvas.getContext('2d');
+    let painting = false;
+    let erasing = false;
+
+    function startPosition(e) {
+        painting = true;
+        draw(e);
+    }
+
+    function finishedPosition() {
+        painting = false;
+        ctx.beginPath();
+    }
+
+    function draw(e) {
+        if (!painting) return;
+        ctx.lineWidth = erasing ? 10 : 5;
+        ctx.lineCap = 'round';
+        ctx.strokeStyle = erasing ? 'black' : 'white';
+
+        ctx.lineTo(e.clientX - canvas.offsetLeft, e.clientY - canvas.offsetTop);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(e.clientX - canvas.offsetLeft, e.clientY - canvas.offsetTop);
+    }
+
+    canvas.addEventListener('mousedown', startPosition);
+    canvas.addEventListener('mouseup', finishedPosition);
+    canvas.addEventListener('mousemove', draw);
+
+    document.getElementById('eraserButton').addEventListener('click', () => erasing = !erasing);
+    document.getElementById('clearButton').addEventListener('click', () => ctx.clearRect(0, 0, canvas.width, canvas.height));
+    document.getElementById('submitButton').addEventListener('click', () => {
+        const dataURL = canvas.toDataURL('image/png');
+        const link = document.createElement('a');
+        link.download = 'drawing.png';
+        link.href = dataURL;
+        link.click();
+    });
+</script>
+</body>
+</html>
 
