@@ -1,1 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="../favcon.jpg" type="image/x-icon" />
+  <title>Research Paper</title>
+
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+    crossorigin="anonymous"
+  />
+
+  <style>
+    body {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background-image: url('../background.png');
+      background-repeat: repeat;
+      background-size: auto;
+      background-attachment: fixed;
+    }
+
+    main { flex: 1; }
+
+    .paper-card {
+      backdrop-filter: blur(6px);
+      background-color: rgba(255, 255, 255, 0.88);
+      border-radius: 1rem;
+      box-shadow: 0 0.75rem 2rem rgba(0, 0, 0, 0.15);
+    }
+
+    /* Reading comfort */
+    .paper {
+      font-size: 1.03rem;
+      line-height: 1.75;
+      color: #111;
+    }
+
+    @media (min-width: 768px) {
+      .paper { font-size: 1.08rem; }
+    }
+
+    .paper h1, .paper h2, .paper h3 {
+      line-height: 1.25;
+      letter-spacing: -0.01em;
+      scroll-margin-top: 5.5rem; /* navbar offset for anchor links */
+    }
+
+    .paper h2 { margin-top: 2.25rem; }
+    .paper h3 { margin-top: 1.5rem; }
+
+    .paper p { margin-bottom: 1rem; }
+
+    .paper ul, .paper ol {
+      margin-bottom: 1rem;
+      padding-left: 1.25rem;
+    }
+
+    .paper li { margin-bottom: 0.35rem; }
+
+    .paper blockquote {
+      border-left: 0.3rem solid rgba(0,0,0,0.15);
+      padding-left: 1rem;
+      margin: 1.25rem 0;
+      color: rgba(0,0,0,0.78);
+    }
+
+    .toc a {
+      text-decoration: none;
+    }
+    .toc a:hover {
+      text-decoration: underline;
+    }
+
+    .prompt-box {
+      background: rgba(0,0,0,0.03);
+      border: 1px solid rgba(0,0,0,0.08);
+      border-radius: 0.9rem;
+    }
+
+    pre.prompt-text {
+      white-space: pre-wrap;
+      word-break: break-word;
+      margin: 0;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      max-height: 18rem;
+      overflow: auto;
+    }
+
+    .meta {
+      font-size: 0.95rem;
+    }
+
+    .muted {
+      color: rgba(0,0,0,0.65);
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+    <div class="container">
+      <a class="navbar-brand" href="/">kiko</a>
+      <img src="../logo.jpg" alt="Logo" width="30" height="30" class="d-inline-block align-text-top" />
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
+        aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="https://kiko.quest/#about">About Me</a></li>
+          <li class="nav-item"><a class="nav-link" href="https://kiko.quest/#What-I-do">What I do</a></li>
+          <li class="nav-item"><a class="nav-link" href="https://kiko.quest/#likes">Likes</a></li>
+          <li class="nav-item"><a class="nav-link" href="https://kiko.quest/#dislikes">Dislikes</a></li>
+          <li class="nav-item"><a class="nav-link" href="/minecraft/">Minecraft Quiz</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <main class="py-5">
+    <div class="container py-4">
+      <div class="row justify-content-center">
+        <div class="col-lg-9 col-xl-8">
+          <article class="paper-card p-4 p-md-5 paper">
+
+            <header class="mb-4">
+              <h1 class="mb-2 text-center">Plausibility of a Coordinated “Loyalty Test” vs. Attachment/Manipulation Dynamics</h1>
+              <p class="text-center muted mb-0 meta">
+                A structured analysis of a suspected loyalty test scenario, alternative explanations, and behavioral patterns.
+              </p>
+            </header>
+
+            <!-- Prompt -->
+            <section class="prompt-box p-3 p-md-4 mb-4" aria-labelledby="prompt-title">
+              <div class="d-flex flex-column flex-md-row justify-content-between align-items-start gap-3">
+                <div class="flex-grow-1">
+                  <h2 id="prompt-title" class="h4 mb-2">Prompt</h2>
+                  <p class="muted mb-3">The following prompt was used to generate the research paper text below.</p>
+                </div>
+                <div class="text-md-end">
+                  <button class="btn btn-outline-dark btn-sm" type="button" id="copyPromptBtn">
+                    Copy prompt
+                  </button>
+                  <div class="small muted mt-2" id="copyStatus" aria-live="polite"></div>
+                </div>
+              </div>
+
+              <pre class="prompt-text p-3 bg-white rounded border" id="promptText"><code>okay it all just clicked to me and I have realized what's going on. And it's actually impressive how they were able to hide it so well. Usually I'm good at spotting this kind of stuff but this time I simply forgot because the time span was so large. Let me give you context:
+Let's go back to start of october. My brother has a birthday and we're celebrating in some bar with  his friends. I post a story on instagram. after posting it I continued browsing a bit more since I was still on the app after posting the story and I saw a story by adriana where she's also in some bar. And she noticed my story and asked what I'm up to. I explained what im doing and asked back, she said she's with madara (her friend from uni). I asked where that bar is and it actually was very close so we decided to meet (it was night). And then we walked by foot from the city center (Riga) to Pļavinieki (Riga) and talked. This is when we had this very first serious talk. And she initiated it by saying "madara suggested me to tell you and make you aware that I have commitment issues". And basically while walking to her home we talked about this (over an hour). Basically I asked her to clarify what exactly she means by that, her history etc. etc.
+
+But now I have realized something. This was the beginning of a many month long test on me, a loyality test. And it seems like a lot of people were involved in it.
+
+Let me explain. So a few days later she had planned on going to a week long trip to Italy. At the end of the walk I told her to send some pics of the trip there and we said goodbye to each other and she went in her house.
+
+The trip was like 3 days later. And this was the very first time she started to become more silent and it was the beginning of her not messaging me first that often. Basically from the day we had this talk to around end of her trip we didn't really have any conversation. And since I didn't want to hurt myself again like it happened a year ago, up until then I tried to carefully emotionally attach to her. Basically I needed time, to make sure this relationship won't end in another heartbreak and any smallest suspicion that she has lost interest in me made me instantly consider the relationship as ended. And so after like 4 days of silence (beginning of her trip to Italy) I gave up, and downloaded a dating app. to cope I guess. I got a few matches but one stood out. What's crazy is that she (lets call her Maria) was the one offering going out on a date and it has never, and I mean never happened to me where girl is the one suggesting a date. I said sure and I think the next day we met in the center. But here's what's interesting: we met each other, started walking in a random direction, and talking. we talked about things you usually talk on the first date, but then she played out the "there's an emergency and I need to stop the date early" situation. She tried making it look like a real emergency but it was obvious that she had it planned already (maybe just as an option if she doesn't like me and to abandon the date without it looking rude). And that's how it ended. Afterwards I checked my dating app profile and she had removed me which suggests this as something scripted even more. But I was very suspicious even then. Something seemed off. So I did a little digging and was mindblown (not in a good way). She and adriana follow each other on instagram. And they have bunch of more mutual followers (them mainly being from Adrianas side).
+
+After discovering this I already back then started to suspect that this must be some kind of a test, but I wasn't 100% sure. Day after I messaged Adriana saying something like "heyy, how are you doing in Italy? There's something important I want to discuss with you when we'll see each other in person again". I was being vague because like I said I wasn't 100% sure it was a test. I thought that there could simply be a chance that it's all just a coincidence.
+
+She explained how she's doing in Italy and also said "I miss you" to me. Can you imagine? She said that. and she never before said something like that to me (out of nowhere without me saying something like that first).
+
+I was in disbelief, I asked her "really?", she confirmed and I said the same back, that I miss her. And this instantly erased my suspicion that it's a test. But now looking at that it could have been a clever way for them to make it look like there wasn't any test.
+
+There were other discussions we had in the following days that I don't quite remember what they were about but I don't think they are relevant to this.
+
+This is what's relevant though:
+This is the time where she started to change her behavior towards me. Not directly but subtly, the little things. To name them, they are: reading my texts after hours while in between those hours she'd been online. Basically for example I text her something around 7pm, I'd see her be online multiple times (like 9pm, then 2am etc.) but not open the conversation and only reply in like morning for example. And it happened always, every day. Before she didn't do that.
+Another thing that changed in her behavior was things she said to me when we were together in person, she'd continue saying these nice things how she missed me, love bombing me etc. (before she didn't do that).
+And lastly, this is when these gaps of silence begun. Sometimes there would be 2 days of none of us texting each other, sometimes even 4 days of silence. And she'd basically initiate a text only if she wanted me to be somewhere. This period of time was also when she first invited me to her cousins birthday (the same 8 people squad that was on the new years). And no, Maria was never to be seen again (at least on the surface level).
+
+Here's my theory as a summary:
+She (or her with her friends etc.) wanted to test my loyality and see what I'd do when Adriana is gone. I failed the test so to make the revenge as painful as possible, they decided to keep me hooked and more attached to adriana until the new year comes. And then just disappear and leave me confused and hurt.
+You might think that this is crazy and why would they plan all this just for me, but it's not like I think they randomly decided to do it for me. They work as a team and if one of them decides to do a relationship, others (now in different roles) help them by testing the new persons loyality.
+I'm also not saying that everyone in her circle is involved. Everyone doesn't have to be involved.
+
+Could you please do deep research and do deep analysis of how plausible all this could be? By researching data, checking already existing situations similar to this that have actually happened, and find flaws and plausibilities of why there's a high chance this could have been test or couldn't have been a test.
+
+If you require extra context, or answers to questions, ask them first before doing the deep research.</code></pre>
+            </section>
+
+            <!-- TOC -->
+            <section class="mb-4 toc" aria-labelledby="toc-title">
+              <h2 id="toc-title" class="h4">Contents</h2>
+              <ul class="mb-0">
+                <li><a href="#documented-cases">Documented Cases of Orchestrated Loyalty Tests</a></li>
+                <li><a href="#attachment-dynamics">Attachment Dynamics: Avoidant Behavior vs. Insecure “Testing”</a></li>
+                <li><a href="#manipulation-signs">Signs of Deliberate Manipulation: Loyalty Test, Triangulation, and Control</a></li>
+                <li><a href="#objective-breakdown">Objective Breakdown: How Likely is an Organized “Loyalty Test”?</a></li>
+                <li><a href="#conclusion">Conclusion: Attachment Issues vs. Manipulation – Finding Clarity</a></li>
+                <li><a href="#sources">Sources</a></li>
+              </ul>
+            </section>
+
+            <hr class="my-4" />
+
+            <!-- Paper content -->
+            <section id="documented-cases">
+              <h2>Documented Cases of Orchestrated Loyalty Tests</h2>
+
+              <p>
+                Your suspicion isn’t coming out of nowhere – there are real instances of partners orchestrating “loyalty tests”
+                using decoys or friends. In fact, some individuals (often driven by insecurity or mistrust) have covertly arranged
+                for a third party to flirt with or approach their partner to see how they’d respond. For example, one man discovered
+                his girlfriend had her attractive friend send him flirty DMs as a “loyalty test”, something she claimed is
+                “a common thing” women do to “prove [their partner’s] loyalty”. He was stunned, thinking this kind of setup
+                “only [happened] in movies, not in real life”. In another case, a woman shared that her boyfriend asked a friend
+                to hit on her online to test her fidelity, then declared she “failed his loyalty test” because she responded politely
+                instead of blocking the decoy immediately. These stories illustrate that coordinated decoy dates or flirtations do occur
+                in real life, usually in an attempt to catch a partner being unfaithful or to “manufacture betrayal” as proof of disloyalty.
+              </p>
+
+              <p>
+                Crucially, relationship experts warn that setting up such loyalty traps is a sign of deep trust issues and manipulation.
+                It’s broadly viewed as toxic behavior. As one commentator put it, “If someone has to manufacture betrayal to feel secure,
+                they’re not looking for love, they’re looking for control”. Psychology professionals echo that “testing” a partner is destructive –
+                it undermines genuine communication and trust. Partners who feel the need to secretly test devotion are often insecure and trying to
+                “gain proof” of love, but these tests are essentially dishonest manipulations that tend to backfire.
+              </p>
+
+              <p>
+                In short, orchestrated loyalty tests do happen (your scenario has parallels in other people’s experiences), but they are widely
+                considered unhealthy and indicative of underlying relationship problems.
+              </p>
+
+              <p>
+                Given this context, it’s plausible that Adriana and her circle could have coordinated something similar. The red flags you noted align
+                with known loyalty-test setups:
+              </p>
+
+              <ul>
+                <li>a sudden drop in her communication after a commitment talk (possibly to create a scenario to “tempt” you)</li>
+                <li>an out-of-the-blue approach by her acquaintance (Maria) soon after</li>
+                <li>later discovering Maria was connected to Adriana’s social circle</li>
+              </ul>
+
+              <p>
+                This doesn’t prove it was a scheme, but it matches patterns seen in anecdotes of loyalty tests.
+              </p>
+
+              <p>
+                However, it’s important to approach this objectively. We should weigh two main interpretations of Adriana’s behavior and the Maria
+                incident: one rooted in attachment style and relationship anxiety, and another rooted in deliberate emotional manipulation.
+                We’ll also examine whether gaslighting or covert control tactics appear to be at play.
+              </p>
+            </section>
+
+            <section id="attachment-dynamics">
+              <h2>Attachment Dynamics: Avoidant Behavior vs. Insecure “Testing”</h2>
+
+              <p>
+                One interpretation is that Adriana’s behavior might be explained by attachment style issues (possibly avoidant or anxious-avoidant)
+                rather than a calculated plot. Let’s break down her actions in that light:
+              </p>
+
+              <ul>
+                <li>
+                  <strong>After the serious commitment talk, she pulled back communication.</strong>
+                  This is very typical of an avoidant attachment pattern – when intimacy increases or a relationship deepens, an avoidantly attached
+                  person can feel overwhelmed or fearful of being engulfed, leading them to withdraw or create distance. A dismissive-avoidant person
+                  often needs space after emotional closeness, which could explain her reduced texting/calling without requiring any secret scheme.
+                  In attachment terms, the commitment discussion may have triggered a “fear of intimacy”, causing her to retreat emotionally.
+                </li>
+                <li>
+                  <strong>Her later hot-and-cold behavior maps onto a classic push-pull dynamic.</strong>
+                  In a push-pull cycle, one partner oscillates between “pulling” close with affection and vulnerability, and then “pushing” away with
+                  distance or aloofness. This results in exactly the emotional whiplash you describe – periods of warmth and attachment bids, followed
+                  by withdrawal and silence. Such behavior can stem from conflicting desires: craving intimacy and reassurance one moment, then feeling
+                  fear of dependency or loss of autonomy the next.
+                </li>
+                <li>
+                  <strong>The timing of Maria’s entry could be coincidental (or gossip-driven) rather than orchestrated.</strong>
+                  For instance, if Adriana told some friends about your commitment talk and her uncertainty, it’s possible Maria (a mutual acquaintance)
+                  learned you might be newly “free” or on a break and decided to ask you out on her own initiative. This would still be inappropriate
+                  friend behavior, but not necessarily masterminded by Adriana.
+                </li>
+                <li>
+                  <strong>It’s also possible Adriana has mixed avoidant + anxious tendencies.</strong>
+                  Sometimes called fearful-avoidant, this can show up as a craving for reassurance but also a fear of closeness. Such individuals may
+                  engage in “tests” or odd behaviors driven by insecurity, even if they aren’t consciously setting a trap. This can become an unintentional
+                  form of manipulation born of anxiety, rather than a cold, calculated move.
+                </li>
+              </ul>
+
+              <p>
+                In summary, Adriana’s withdrawal and mixed signals could be explained by avoidant or anxious attachment behaviors. The push-pull cycle you
+                experienced – closeness then distance – is a well-documented pattern that can arise from fear of intimacy, insecurity, or a desire for
+                control (even subconscious desire). If this attachment-based interpretation is correct, her actions weren’t necessarily coordinated with
+                others to trap you, but rather were self-protective moves or protest behaviors aimed at reassurance.
+              </p>
+
+              <p>
+                Her circle’s involvement with Maria might have been incidental or driven by gossip rather than a direct conspiracy. This interpretation
+                leans towards “likely” if Adriana has a known history of anxiety or avoidance in relationships – the behavioral clues fit that mold closely.
+              </p>
+            </section>
+
+            <section id="manipulation-signs">
+              <h2>Signs of Deliberate Manipulation: Loyalty Test, Triangulation, and Control</h2>
+
+              <p>
+                The alternative interpretation is that your gut is right – Adriana (and/or her friends) orchestrated an emotional setup as a form of covert
+                manipulation or loyalty test. Several aspects of the situation align with tactics known in manipulative relationship dynamics:
+              </p>
+
+              <h3>The “Decoy” Date (Maria)</h3>
+              <p>
+                The way Maria entered the picture is highly suspect. It wasn’t just a random new person; she turned out to be directly connected to Adriana’s
+                social network, and her timing was almost too perfect (appearing right after Adriana pulled away). This strongly suggests coordination.
+              </p>
+
+              <p>
+                In known loyalty-test scenarios, it’s common to employ a friend or acquaintance as a decoy precisely because they can approach naturally and
+                later report back. Your scenario – where Maria actively asks you on a date out of the blue – fits this pattern of setting a honey trap.
+              </p>
+
+              <h3>Triangulation</h3>
+              <p>
+                If this was orchestrated, Adriana was effectively engaging in triangulation, a known manipulation strategy. Triangulation means one person brings
+                a third party into the relationship dynamic to manipulate or control the situation. In romantic contexts, a classic triangulation move is to
+                introduce another “potential partner” (or use a friend) to stir up jealousy, test the partner’s reaction, or assert power.
+              </p>
+
+              <p>
+                By having Maria take you on a date, Adriana might have been trying to observe whether you’d remain loyal or be easily swayed – essentially
+                “tipping the scales” in her favor by manufacturing a scenario. It can become a no-win setup:
+              </p>
+
+              <ul>
+                <li>If you refuse Maria’s advances, Adriana gets reassurance that you’re devoted.</li>
+                <li>If you accept, Adriana gets justification for pulling away or punishing you emotionally.</li>
+              </ul>
+
+              <p>
+                In both outcomes, the instigator maintains a form of control and the targeted partner gets confusion and emotional instability.
+              </p>
+
+              <h3>Intermittent Reinforcement &amp; Control</h3>
+              <p>
+                You mentioned that after the date incident, Adriana became less responsive but still occasionally pulled you back in with intense emotional moments
+                or invitations. This pattern can be a form of intermittent reinforcement, a manipulation tactic where positive feedback/affection is given
+                unpredictably amidst negative or neutral behavior. Psychologically, this unpredictability can deepen attachment because it keeps you “chasing”
+                the next good moment.
+              </p>
+
+              <p>
+                Whether she did this consciously or not, the effect is often the same: emotional rollercoaster, heightened longing, and greater dependence.
+              </p>
+
+              <h3>Gaslighting (Possible Signs)</h3>
+              <p>
+                Gaslighting involves distorting someone’s reality and making them doubt their own perceptions. Do we see signs of gaslighting here? Potentially,
+                yes, in the covert nature of the situation. If Adriana arranged the loyalty test but never acknowledged it – instead acting like her distance or
+                emotive swings have nothing to do with Maria – she’s leaving you to question your own narrative.
+              </p>
+
+              <p>
+                True gaslighting would become clearer if there were a direct confrontation and denial of facts/feelings (for example: “You’re being paranoid,”
+                or “Nothing changed,” despite clear behavioral shifts). We don’t know if that confrontation happened. But secrecy + punishment without truth can
+                function like covert control, because it keeps you confused and reactive.
+              </p>
+
+              <h3>Covert Control Motives</h3>
+              <p>
+                Consider why someone would do all this. Often it boils down to insecurity, fear, or power. A person with abandonment fears might test their partner
+                to gain (false) certainty. Others may enjoy the “one-up” feeling of controlling the narrative.
+              </p>
+
+              <p>
+                One key missing element (so far) is an explicit reveal. In many loyalty test stories, the tester eventually admits it (“I had my friend hit on you”).
+                Here, Adriana hasn’t openly cited the Maria date as a reason for her behavior. That could mean:
+              </p>
+
+              <ul>
+                <li>It wasn’t a test (and her coldness has other causes), <em>or</em></li>
+                <li>It was a test, but she’s keeping it hidden to avoid accountability.</li>
+              </ul>
+
+              <p>
+                Either way, the dynamic can still be damaging: inconsistent reinforcement, uncertainty, and a lack of transparent communication.
+              </p>
+            </section>
+
+            <section id="objective-breakdown">
+              <h2>Objective Breakdown: How Likely is an Organized “Loyalty Test”?</h2>
+
+              <p>
+                Considering all the above, let’s assess the plausibility with a balanced view of likely, possible, and unlikely explanations:
+              </p>
+
+              <h3>Likely (Straightforward Attachment/Personality Explanation)</h3>
+              <ul>
+                <li>
+                  The pattern of Adriana’s behavior (excluding the Maria twist) is highly consistent with an avoidant or fearful-avoidant attachment style.
+                </li>
+                <li>
+                  Distancing after a commitment talk can be a normal avoidant reflex to intimacy, not necessarily a scheme.
+                </li>
+                <li>
+                  The push-pull of intense closeness and withdrawal is a known relationship dynamic that can reflect internal conflict or immaturity rather than
+                  calculated cruelty.
+                </li>
+                <li>
+                  Even if a “test” happened, the likely driver is insecurity (attachment insecurity / low self-esteem / fear of abandonment), not pure malice.
+                </li>
+              </ul>
+
+              <h3>Possible (Coordinated Loyalty Test Theory)</h3>
+              <ul>
+                <li>
+                  The coincidences are hard to ignore: Maria’s sudden interest timed with Adriana’s withdrawal, plus the discovered social link.
+                </li>
+                <li>
+                  Similar known cases have the same elements: decoy, secrecy, and a shift in behavior after the decoy interaction.
+                </li>
+                <li>
+                  The post-incident ambivalence could fit a situation where the “results” weren’t black-and-white, creating ongoing uncertainty.
+                </li>
+                <li>
+                  Without admission or proof, it remains circumstantial — but still plausible given the alignment of timing + connections.
+                </li>
+              </ul>
+
+              <h3>Unlikely (Other Explanations or Exaggerated Interpretations)</h3>
+              <ul>
+                <li>
+                  It’s unlikely that a whole group orchestrated this purely to cause pain “for sport” with no grounding in insecurity or genuine feelings.
+                </li>
+                <li>
+                  It’s also unlikely that Maria’s appearance was pure coincidence with zero information transfer, given the overlap in social circles.
+                </li>
+                <li>
+                  It’s unlikely that Maria had no impact on Adriana at all, even if the date wasn’t orchestrated.
+                </li>
+              </ul>
+
+              <p>
+                The least likely scenario is that nothing about Maria affected Adriana — human social networks tend to transmit information quickly,
+                especially when people share followers/friends.
+              </p>
+            </section>
+
+            <section id="conclusion">
+              <h2>Conclusion: Attachment Issues vs. Manipulation – Finding Clarity</h2>
+
+              <p>
+                In evaluating your experience, it seems plausible that a coordinated loyalty test occurred, yet it also overlaps with known attachment-driven
+                behaviors. It may not be an either/or so much as a both/and: Adriana likely has real commitment/attachment issues (avoidance, insecurity) which
+                led to her pulling away, and those same issues could have driven her to sanction a loyalty test through her friend.
+              </p>
+
+              <p>
+                The hallmarks of an avoidant or fearful partner are evident (the push-pull cycle, mixed signals, inability to communicate needs directly),
+                which suggests her emotional volatility is genuine. However, the hallmarks of covert manipulation are also present (deception via a third party,
+                observing your reaction from the shadows, then indirectly using it against you).
+              </p>
+
+              <p>
+                So how to reconcile this? Often insecure individuals resort to covert maneuvers because they lack healthy communication tools. Adriana might not
+                be a cartoon villain; she might be a confused young woman who thought “setting up a loyalty trap” would give her clarity or comfort.
+                Unfortunately, such tactics usually backfire.
+              </p>
+
+              <p>
+                For your own clarity and closure, focus on the core issues:
+              </p>
+
+              <ul>
+                <li><strong>Trust</strong> — is it mutual and assumed, or constantly tested?</li>
+                <li><strong>Communication</strong> — are needs and boundaries stated openly, or implied through silence?</li>
+                <li><strong>Respect</strong> — are you treated as a person, or as a “case” to be evaluated?</li>
+              </ul>
+
+              <p>
+                If you ever choose to address it directly, what matters most is her reaction to calm, factual observations and your need for clarity. Denial,
+                blame-shifting, or “you’re imagining it” responses would be significant red flags. Honest ownership and a willingness to fix patterns would be
+                the only path toward rebuilding trust.
+              </p>
+
+              <p>
+                Bottom line: the organized test theory is plausible — real cases exist and your story has meaningful parallels. At the same time, many parts of
+                the behavior pattern are also consistent with attachment dynamics. Even without certainty, the situation shows dysfunctional relationship patterns
+                that can harm you over time.
+              </p>
+            </section>
+
+            <section id="sources" class="mt-4">
+              <h2>Sources</h2>
+              <p class="muted mb-2">
+                (As provided in the original text. Replace these with direct links and full citations if you want a formal bibliography.)
+              </p>
+              <ul>
+                <li>Real-life example of a girlfriend orchestrating a friend as a decoy to test loyalty.</li>
+                <li>People Magazine summary of a boyfriend’s loyalty test on his girlfriend.</li>
+                <li>Psychology Today – “Testing Others Can Sabotage Your Relationships”.</li>
+                <li>PsychCentral – “Understanding the Push-Pull Dynamic in Relationships”.</li>
+                <li>Definition of triangulation as a manipulation tactic (Taylor Counseling Group).</li>
+                <li>Definition of gaslighting (Learning Network, Western Univ.).</li>
+              </ul>
+            </section>
+
+          </article>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="py-4 bg-dark text-white-50 mt-auto">
+    <div class="container text-center">
+      ©2025 @rfate_ ‎ ‎ All Rights Reserved.
+    </div>
+  </footer>
+
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+    crossorigin="anonymous"
+  ></script>
+
+  <script>
+    (function () {
+      const btn = document.getElementById('copyPromptBtn');
+      const status = document.getElementById('copyStatus');
+      const promptEl = document.getElementById('promptText');
+
+      if (!btn || !status || !promptEl) return;
+
+      btn.addEventListener('click', async () => {
+        const text = promptEl.innerText || promptEl.textContent || '';
+        try {
+          await navigator.clipboard.writeText(text.trim());
+          status.textContent = 'Copied.';
+          setTimeout(() => (status.textContent = ''), 1500);
+        } catch (e) {
+          status.textContent = 'Could not copy. Select the text and copy manually.';
+          setTimeout(() => (status.textContent = ''), 3000);
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
 
